@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema de Pacientes</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+  <script type="module" src="app.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h1>📋 Sistema de Pacientes</h1>
+    <section class="menu-grid" id="menuPrincipal">
+      <div class="menu-card" data-target="cardCadastro">
+        <i class="fas fa-user-plus fa-3x"></i>
+        <h3>Cadastrar Paciente</h3>
+      </div>
+      <div class="menu-card" data-target="cardConsulta">
+        <i class="fas fa-search fa-3x"></i>
+        <h3>Consultar Paciente</h3>
+      </div>
+      <div class="menu-card" data-target="cardListar">
+        <i class="fas fa-list fa-3x"></i>
+        <h3>Listar CPFs</h3>
+      </div>
+    </section>
+
+    <section class="card hidden" id="cardCadastro">
+      <h2>Cadastrar Paciente</h2>
+      <div class="form-row">
+        <input type="text" id="nome" placeholder="Nome">
+        <input type="text" id="cpf" placeholder="CPF">
+      </div>
+      <div class="form-row">
+        <input type="number" id="idade" placeholder="Idade">
+        <input type="text" id="endereco" placeholder="Endereço">
+      </div>
+      <button class="btn" id="cadastrarBtn"><i class="fas fa-plus-circle"></i> Cadastrar</button>
+      <div class="resultado" id="resultadoCadastro"></div>
+      <button class="btn voltarBtn">⬅ Voltar</button>
+    </section>
+
+    <section class="card hidden" id="cardConsulta">
+      <h2>Consultar Paciente</h2>
+      <div class="form-row">
+        <input type="text" id="cpfConsulta" placeholder="Digite o CPF">
+      </div>
+      <button class="btn" id="consultarBtn"><i class="fas fa-search"></i> Consultar</button>
+      <div class="resultado" id="resultadoConsulta"></div>
+      <button class="btn voltarBtn">⬅ Voltar</button>
+    </section>
+
+    <section class="card hidden" id="cardListar">
+      <h2>Listar Todos os CPFs</h2>
+      <button class="btn" id="listarCPFsBtn"><i class="fas fa-list"></i> Listar CPFs</button>
+      <div class="resultado" id="resultadoLista"></div>
+      <button class="btn voltarBtn">⬅ Voltar</button>
+    </section>
+  </div>
+</body>
+
+</html>
