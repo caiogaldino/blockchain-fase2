@@ -1732,12 +1732,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x82b6bF8894DdD83429601c7DcDE56e4045817D21",
-      "transactionHash": "0xbdfda906de38f5ae63ff61ffa34ac8c0cae428cbaf589e90cbaaaa644ad8d8d8"
+      "address": "0x5139159c5145553186B0A9F9FbE553A938290e70",
+      "transactionHash": "0x4c7025521ec92e769f9bf11a3a99e03724cf61c93753c37a46b8a2ae283615f9"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-09-24T22:29:19.748Z",
+  "updatedAt": "2025-09-25T11:50:31.153Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

@@ -22,7 +22,7 @@ document.querySelectorAll(".menu-card").forEach(card => {
   });
 });
 
-document.querySelectorAll(".voltarBtn").forEach(btn => {
+document.querySelectorAll(".voltarButton").forEach(btn => {
   btn.addEventListener("click", () => {
     sections.forEach(sec => sec.classList.add("hidden"));
     menuPrincipal.classList.remove("hidden");
@@ -33,55 +33,55 @@ const resultadoCadastro = document.getElementById('resultadoCadastro');
 const resultadoConsulta = document.getElementById('resultadoConsulta');
 const resultadoLista = document.getElementById('resultadoLista');
 
-const cadastrarBtn = document.getElementById('cadastrarBtn');
-const consultarBtn = document.getElementById('consultarBtn');
-const listarCPFsBtn = document.getElementById('listarCPFsBtn');
+const cadastrarButton = document.getElementById('cadastrarButton');
+const consultarButton = document.getElementById('consultarButton');
+const listarCPFsButton = document.getElementById('listarCPFsButton');
 
-function showMessage(element, msg, type="success") {
+function mostarMensagem(element, msg, type="success") {
   element.textContent = msg;
   element.className = `resultado ${type} show`;
 }
 
-cadastrarBtn.addEventListener('click', async () => {
+cadastrarButton.addEventListener('click', async () => {
   const nome = document.getElementById('nome').value;
   const cpf = document.getElementById('cpf').value;
   const idade = parseInt(document.getElementById('idade').value);
   const endereco = document.getElementById('endereco').value;
 
-  if (!nome || !cpf || !idade || !endereco) return showMessage(resultadoCadastro, "Preencha todos os campos!", "error");
-  if (idade <= 12) return showMessage(resultadoCadastro, "Idade deve ser maior que 12 anos!", "error");
+  if (!nome || !cpf || !idade || !endereco) return mostarMensagem(resultadoCadastro, "Preencha todos os campos!", "error");
+  if (idade <= 12) return mostarMensagem(resultadoCadastro, "Idade deve ser maior que 12 anos!", "error");
 
   try {
     await contrato.methods
       .cadastrarPaciente(nome, cpf, idade, endereco)
       .send({ from: contaPrincipal, gas: 300000 });
 
-    showMessage(resultadoCadastro, `Paciente ${nome} cadastrado com sucesso!`);
-  } catch (err) {
-    console.error(err);
-    showMessage(resultadoCadastro, `Erro ao cadastrar paciente: ${err.message}`, "error");
+    mostarMensagem(resultadoCadastro, `Paciente ${nome} cadastrado com sucesso!`);
+  } catch (erro) {
+    console.error(erro);
+    mostarMensagem(resultadoCadastro, `Erro ao cadastrar paciente: ${erro.message}`, "error");
   }
 });
 
-consultarBtn.addEventListener('click', async () => {
+consultarButton.addEventListener('click', async () => {
   const cpfConsulta = document.getElementById('cpfConsulta').value;
-  if (!cpfConsulta) return showMessage(resultadoConsulta, "Digite um CPF para consulta!", "error");
+  if (!cpfConsulta) return mostarMensagem(resultadoConsulta, "Digite um CPF para consulta!", "error");
 
   try {
     const paciente = await contrato.methods.consultarPaciente(cpfConsulta).call();
-    showMessage(resultadoConsulta, `Nome: ${paciente[0]}, Idade: ${paciente[1]}, Endereço: ${paciente[2]}`);
-  } catch (err) {
-    console.error(err);
-    showMessage(resultadoConsulta, `Paciente não encontrado ou erro: ${err.message}`, "error");
+    mostarMensagem(resultadoConsulta, `Nome: ${paciente[0]}, Idade: ${paciente[1]}, Endereço: ${paciente[2]}`);
+  } catch (erro) {
+    console.error(erro);
+    mostarMensagem(resultadoConsulta, `Paciente não encontrado ou erro: ${erro.message}`, "error");
   }
 });
 
-listarCPFsBtn.addEventListener('click', async () => {
+listarCPFsButton.addEventListener('click', async () => {
   try {
     const cpfs = await contrato.methods.listarCPFs().call();
-    showMessage(resultadoLista, cpfs.length > 0 ? cpfs.join(', ') : 'Nenhum CPF cadastrado');
-  } catch (err) {
-    console.error(err);
-    showMessage(resultadoLista, `Erro ao listar CPFs: ${err.message}`, "error");
+    mostarMensagem(resultadoLista, cpfs.length > 0 ? cpfs.join(', ') : 'Nenhum CPF cadastrado');
+  } catch (erro) {
+    console.error(erro);
+    mostarMensagem(resultadoLista, `Erro ao listar CPFs: ${erro.message}`, "error");
   }
 });
